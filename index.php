@@ -16,6 +16,8 @@ require_once __DIR__ . '/classes/Product.php';
 require_once __DIR__ . '/classes/AnimalFood.php';
 require_once __DIR__ . '/classes/AnimalBed.php';
 
+require_once __DIR__ . '/classes/Cart.php';
+
 $user1 = new User ( 1 , 'Ugo' , 'De Ughi');
 $user2 = new UserRegistered ( 2 , 'Mario' , 'Rossi', 'mario.rossi@gmail.com');
 $user3 = new User ( 3 , 'Gianluca' , 'Bianchi');
@@ -37,9 +39,12 @@ $product6 = new AnimalBed ( 251 , 'Spike Comfort' , 105, 'Cane', 'Esterno');
 
 $products_db = [$product1,$product2,$product3,$product5,$product4,$product6];
 
-// var_dump($product1);
-// var_dump($products_db);
+$cart1 = new Cart (10 , 'Ugo De Ughi' , [ $product1,$product3] );
+$cart2 = new Cart (15 , 'Mario Rossi' , [ $product2,$product4] );
 
+$carts_db = [$cart1,$cart2];
+
+var_dump($carts_db);
 
 
 ?>
@@ -83,8 +88,6 @@ $products_db = [$product1,$product2,$product3,$product5,$product4,$product6];
           <li><strong>Cognome:</strong>  <?php echo $user->getSurname() ?></li>
           <?php if(get_class($user) == 'UserRegistered') : ?>
           <li><strong>Email:</strong>  <?php echo $user->getEmail() ?></li>
-          <?php endif; ?>
-          <?php if(get_class($user) == 'UserRegistered') : ?>
           <li><strong>Sconto:</strong>  <?php echo $user->getDiscount() ?> &percnt;</li>
           <?php endif; ?>
         </ul>
@@ -122,6 +125,32 @@ $products_db = [$product1,$product2,$product3,$product5,$product4,$product6];
           <?php endif; ?>
           <?php if(get_class($product) == 'AnimalBed') : ?>
           <li><strong>Tipologia:</strong> <?php echo $product->getTypeOfBed() ?></li>
+          <?php endif; ?>
+        </ul>
+      </div>
+      <?php endforeach; ?>
+
+    </div>
+
+
+    <h2 class="text-center">Lista Ordini</h2>
+    <div class="container orders_container d-flex flex-wrap justify-content-center m-3">
+
+      <?php foreach ($carts_db as $item => $cart): ?>
+
+      <div class="order_box m-3">
+
+        <h3>Carrello - ID: <?php echo $cart->getId()?></h3>
+        
+        <ul>
+          <li><strong>Utente:</strong> <?php echo $cart->getUser()?></li>
+          <?php if(get_class($user) == 'UserRegistered') : ?>
+          <li><strong>Lista Prodotti:</strong>  <?php echo $cart->getListItems() ?></li>
+          <?php endif; ?>
+          <?php if(get_class($user) == 'UserRegistered') : ?>
+          <li><strong>Prezzo Totale:</strong>  <?php echo $cart->getTotalPrice() ?> &euro;</li>
+          <li><strong>Sconto:</strong>  <?php  //echo $cart->getDiscount() ?> &percnt;</li>
+          <li><strong>Prezzo Scontato:</strong>  <?php //echo $cart->getFinalPrice() ?> &euro;</li>
           <?php endif; ?>
         </ul>
       </div>

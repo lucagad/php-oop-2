@@ -21,26 +21,6 @@ class AnimalBed extends Product{
 		$this->setTypeOfBed($_typeOfBed);
   }
 
-  public function getId(){
-		return $this->id;
-	}
-
-  public function setName($_name){
-		$this->name = $_name;
-	}
-
-	public function getName(){
-		return $this->name;
-	}
-
-  public function setPrice($_price){
-		$this->price = $_price;
-	}
-
-	public function getPrice(){
-		return $this->price;
-	}
-
 	public function setTypeOfBed($_typeOfBed){
 		$this->typeOfBed = $_typeOfBed;
 	}

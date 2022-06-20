@@ -1,9 +1,10 @@
 .user_box,
-.product_box{
+.product_box,
+.order_box{
   margin: 5px;
   padding: 25px;
   border: 1px solid black;
-  width: 250px;
+  width: 300px;
   overflow: hidden;
 }
 
@@ -14,3 +15,8 @@
 .product_box{
   background-color: rgb(220, 250, 215);
 }
+
+.order_box{
+  background-color: rgb(148, 164, 226);
+}
+
