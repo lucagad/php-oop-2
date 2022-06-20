@@ -13,6 +13,7 @@ require_once __DIR__ . '/classes/User.php';
 require_once __DIR__ . '/classes/UserRegistered.php';
 
 require_once __DIR__ . '/classes/Product.php';
+require_once __DIR__ . '/classes/AnimalFood.php';
 
 $user1 = new User ( 1 , 'Ugo' , 'De Ughi');
 $user2 = new UserRegistered ( 2 , 'Mario' , 'Rossi', 'mario.rossi@gmail.com');
@@ -24,9 +25,11 @@ $users_db = [$user1,$user2];
 
 $product1 = new Product ( 1 , 'Prodotto Generico' , 5);
 
-$products_db = [$product1];
+$product2 = new AnimalFood ( 150 , 'Natural Trainer Crocchette' , 35, 'Cane', 'Manzo & Riso');
 
-var_dump($product1);
+$products_db = [$product1,$product2];
+
+// var_dump($product1);
 var_dump($products_db);
 
 
@@ -50,7 +53,7 @@ var_dump($products_db);
   <div class="container my-2">
     <h2>Lista Utenti:</h2>
 
-    <div class="container users_container d-flex flex-column m-3">
+    <div class="container users_container d-flex  m-3">
 
       <?php foreach ($users_db as $people => $user): ?>
 
@@ -89,22 +92,22 @@ var_dump($products_db);
       <div class="product_box m-3">
 
         <?php if(get_class($product) == 'Product'){ ?>
-          <h3><?php echo $user->getName()?></h3>
+          <h3><?php echo $product->getName()?></h3>
           <span>(Categoria: Generico)</span>
         <?php } else if(get_class($product) == 'AnimalFood') { ?>
-          <h3><?php echo $user->getFullName()?></h3>
-          <span>(Utente Guest)</span>
+          <h3><?php echo $product->getName()?></h3>
+          <span>(Categoria: Cibo)</span>
         <?php } ?>
 
         <ul>
           <li>ID: <?php echo $product->getId()?></li>
           <li>Nome: <?php echo $product->getName()?></li>
           <li>Prezzo: <?php echo $product->getPrice() ?> &euro;</li>
-          <?php if(get_class($user) == 'UserRegistered') : ?>
-          <li>Email: <?php echo $user->getEmail() ?></li>
+          <?php if(get_class($product) != 'Product') : ?>
+          <li>Tipo di Animale: <?php echo $product->getAnimalType() ?></li>
           <?php endif; ?>
-          <?php if(get_class($user) == 'UserRegistered') : ?>
-          <li>Sconto: <?php echo $user->getDiscount() ?></li>
+          <?php if(get_class($product) != 'Product') : ?>
+          <li>Ingredienti: <?php echo $product->getIngredients() ?></li>
           <?php endif; ?>
         </ul>
       </div>
