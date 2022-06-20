@@ -3,20 +3,22 @@
 require_once __DIR__ . "/Product.php";
 
 // estendo la classe User
-class AnimalFood extends Product{
+class AnimalBed extends Product{
 
   
-	private $ingredients;
+	private $typeOfBed;
 
   public function __construct($_id, 
 															$_name, 
 															$_price,
 															$_animalType,
-															$_ingredients){
+															$_typeOfBed){
 
 		// eredito il costruttore della classe madre e gli passo i parametri obbligatori
 		parent::__construct($_id,$_name, $_price,$_animalType);
-		$this->setIngredients($_ingredients);
+
+		// nel costruttore valorizzo tutte le proprietà che reputo essere obbligatorie
+		$this->setTypeOfBed($_typeOfBed);
   }
 
   public function getId(){
@@ -39,12 +41,12 @@ class AnimalFood extends Product{
 		return $this->price;
 	}
 
-	public function setIngredients($_ingredients){
-		$this->ingredients = $_ingredients;
+	public function setTypeOfBed($_typeOfBed){
+		$this->typeOfBed = $_typeOfBed;
 	}
 
-	public function getIngredients(){
-		return $this->ingredients;
+	public function getTypeOfBed(){
+		return $this->typeOfBed;
 	}
 
 }

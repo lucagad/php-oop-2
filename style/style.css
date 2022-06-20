@@ -1,0 +1,16 @@
+.user_box,
+.product_box{
+  margin: 5px;
+  padding: 25px;
+  border: 1px solid black;
+  width: 250px;
+  overflow: hidden;
+}
+
+.user_box{
+  background-color: antiquewhite;
+}
+
+.product_box{
+  background-color: rgb(220, 250, 215);
+}
